@@ -6,14 +6,16 @@ import { observer } from 'mobx-react-lite'
 
 import store from 'app/store'
 
-const initialField = store.field
+const Field: FC = observer(() => {
 
-const fieldRows = initialField.map((row, i) => 
+  const initialField = store.field
+  
+  const fieldRows = initialField.map((row, i) => 
     <div key={i} className={styles.row}>
         {row.map((_, j) => <Cell key={`${i}-${j}`} id={`${i}-${j}`} />)}
-    </div>)
+    </div>
+  )
 
-const Field: FC = observer(() => {
   return (
     <div className={styles.field}>
       {fieldRows}

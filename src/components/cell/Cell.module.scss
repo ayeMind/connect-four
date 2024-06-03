@@ -18,3 +18,11 @@
     }
 
 }
+
+.end {
+    cursor: default;
+
+    &:hover {
+        opacity: 100%;
+    }
+}

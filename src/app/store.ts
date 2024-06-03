@@ -2,12 +2,14 @@ import { makeAutoObservable } from "mobx";
 
 export type Cell = 0 | "red" | "yellow"
 
+const initialField:Cell[][] = new Array(6).fill(0).map(() => new Array(7).fill(0))
+
 class Store {
     constructor() {
         makeAutoObservable(this);
     }
 
-    field: Cell[][] = new Array(6).fill(0).map(() => new Array(7).fill(0))
+    field: Cell[][] = initialField
     move(id: string) {
         const [i, j] = id.split("-").map(Number)
         for (let row = this.field.length - 1; row >= i; row--) {
@@ -135,8 +137,18 @@ class Store {
     }
 
     gameIsOver = false
-    gameOver() {
+    winner: "red" | "yellow" | "draw" | null = null
+    
+    gameOver(who: "draw" | "red" | "yellow") {
+        this.winner = who
         this.gameIsOver = true
+    }
+
+    reset() {
+        this.currentPlayer = "red"
+        this.gameIsOver = false
+        this.field = initialField  
+        this.winner = null
     }
 }
 

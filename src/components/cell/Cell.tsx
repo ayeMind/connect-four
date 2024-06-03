@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './Cell.module.scss'
 import store from 'app/store'
 import { observer } from 'mobx-react-lite'
@@ -10,9 +10,32 @@ interface CellProps {
 
 const Cell: FC<CellProps> = observer(({ id }) => {
 
+  const onResetGame = () => {
+    const cells = document.querySelectorAll(`.${styles.cell}`)
+
+    cells.forEach((cell) => {
+      cell.className = styles.cell
+    })
+  }
+
+  useEffect(() => {
+    document.addEventListener('game-reset', onResetGame)
+
+    return () => {
+      document.removeEventListener('game-reset', onResetGame)
+    }
+  }, [])
+
   const moves = store.getPossibleMoves()
+  if (moves.length === 0) {
+    store.gameOver("draw")
+  }
   
   const handleClick = (event: React.MouseEvent) => {
+
+    if (store.gameIsOver) {
+      return
+    }
 
     const target = event.target as HTMLDivElement
     const targetY = target.getBoundingClientRect().y
@@ -47,9 +70,14 @@ const Cell: FC<CellProps> = observer(({ id }) => {
       
       store.checkWin(cellId).then((res) => {
         if (res) {
-          store.gameOver()
+          store.gameOver(store.currentPlayer)
+          const cells = document.querySelectorAll(`.${styles.cell}`)
+          cells.forEach((cell) => {
+            cell.classList.add(styles.end)
+          })
+        } else {
+          store.togglePlayer()
         }
-        store.togglePlayer()
       })
     }
 }
