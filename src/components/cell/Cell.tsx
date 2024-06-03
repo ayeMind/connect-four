@@ -19,6 +19,11 @@ const Cell: FC<CellProps> = observer(({ id }) => {
 
     if (moves.includes(id)) {
       const cellRow = store.move(id)
+
+      if (cellRow === false) {
+        return
+      }
+
       const cellCol = Number(id.split("-")[1])
       const cellId = `${cellRow}-${cellCol}`
       const cell = document.getElementById(cellId)
@@ -34,11 +39,18 @@ const Cell: FC<CellProps> = observer(({ id }) => {
           { transform: `translateY(0px)` }
         ],
         {
-          duration: 300
+          duration: Math.abs(targetY - cellY),
         }
       )
       cell.classList.toggle(styles[store.currentPlayer])
-      store.togglePlayer()
+      // console.log(store.checkHorizontal(cellRow, cellCol));
+      
+      store.checkWin(cellId).then((res) => {
+        if (res) {
+          store.gameOver()
+        }
+        store.togglePlayer()
+      })
     }
 }
 
