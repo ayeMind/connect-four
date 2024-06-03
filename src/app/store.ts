@@ -13,8 +13,13 @@ class Store {
     }
     move(id: string) {
         const [i, j] = id.split("-").map(Number)
-        this.field[i][j] = this.currentPlayer
-        return "OK"
+        for (let row = this.field.length - 1; row >= i; row--) {
+            if (this.field[row][j] === 0) {
+                this.field[row][j] = this.currentPlayer
+                return row
+            }
+        }
+        return false
     }
     getPossibleMoves = () => {
         const possibleMoves: string[] = []
@@ -28,7 +33,6 @@ class Store {
         }
         return possibleMoves
     }
-
     currentPlayer: "red" | "yellow" = "red"
     togglePlayer() {
         this.currentPlayer = this.currentPlayer === "red" ? "yellow" : "red"
