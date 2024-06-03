@@ -10,7 +10,7 @@ const initialField = store.field
 
 const fieldRows = initialField.map((row, i) => 
     <div key={i} className={styles.row}>
-        {row.map((_, j) => <Cell key={j} row={i} col={j} />)}
+        {row.map((_, j) => <Cell key={`${i}-${j}`} id={`${i}-${j}`} />)}
     </div>)
 
 const Field: FC = observer(() => {
