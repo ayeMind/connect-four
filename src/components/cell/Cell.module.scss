@@ -1,0 +1,19 @@
+.cell {
+    background: $cell-default-color;
+    width: min(10vw, 10vh);
+    height: min(10vw, 10vh);
+    border-radius: 100%;
+    cursor: pointer;
+
+    &.red {
+        background: $cell-color-red;
+    }
+
+    &.yellow {
+        background: $cell-color-yellow;
+    }
+
+    &:hover {
+        opacity: 80%;
+    }
+}
