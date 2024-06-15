@@ -19,7 +19,7 @@ const Cell: FC<CellProps> = observer(({ id }) => {
   }
 
   useEffect(() => {
-    document.addEventListener('game-reset', onResetGame)
+    document.addEventListener('game-reset', onResetGame) // event from GameWithFriend
 
     return () => {
       document.removeEventListener('game-reset', onResetGame)

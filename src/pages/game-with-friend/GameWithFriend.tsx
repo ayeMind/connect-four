@@ -1,5 +1,5 @@
 import { Layout } from 'components/layout'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './GameWithFriend.module.scss'
 import { Field } from 'components/field'
 import { observer } from 'mobx-react-lite'
@@ -8,6 +8,10 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 const GameWithFriend: FC = observer(() => {
+
+  useEffect(() => {
+    store.reset()
+  }, [])
 
   const { currentPlayer } = store
 
