@@ -9,10 +9,11 @@
 .buttons {
     display: flex;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 
     .button {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 2rem;
         border-radius: 0.5rem;
         background-color: $btn-color;
 
@@ -28,7 +29,7 @@
 }
 
 .title {
-    font-size: 6rem;
+    font-size: 5rem;
 
     @media screen and (max-width: 768px) {
         font-size: 3rem;
@@ -40,13 +41,13 @@
 }
 
 .text {
-    font-size: 2rem;
+    font-size: 1.5rem;
 
     @media screen and (max-width: 768px) {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     @media screen and (max-width: 480px) {
-        font-size: 1.2rem;
+        font-size: 1.0rem;
     }
 }

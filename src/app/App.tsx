@@ -7,11 +7,11 @@ const App: FC = () => {
   return (
     <Layout className={styles.page}>
       <h1 className={styles.title}>Connect Four!</h1>
-      <p className={styles.text}>Play with your friend or against the computer</p>
       <div className={styles.buttons}>
-        <Link to="/friend" className={styles.button}>Play with friend</Link>
-        <Link to="/computer" className={styles.button}>Play with computer</Link>
+        <Link to="/game" className={styles.button}>Start</Link>
       </div>
+      <p className={styles.text}>Connect four is a tic-tac-toe-like two-player game.</p>
+      <p className={styles.text}>Drop colored discs into a grid to form a line of four in a race against your opponent.</p>
     </Layout>
   )
 }

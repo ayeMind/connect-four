@@ -1,1 +1,0 @@
-export { GameWithComputer } from './GameWithComputer'

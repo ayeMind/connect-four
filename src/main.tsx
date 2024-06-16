@@ -9,7 +9,6 @@ import {
 
 import { App } from 'app'
 import { Error404 } from 'pages/error-404'
-import { GameWithComputer } from 'pages/game-with-computer'
 import { GameWithFriend } from 'pages/game-with-friend'
 
 const router = createBrowserRouter([
@@ -19,11 +18,7 @@ const router = createBrowserRouter([
     errorElement: <Error404 />
   },
   {
-    path: '/computer',
-    element: <GameWithComputer />
-  },
-  {
-    path: '/friend',
+    path: '/game',
     element: <GameWithFriend />
   }
 ])
